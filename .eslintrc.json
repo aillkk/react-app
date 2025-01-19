@@ -1,0 +1,8 @@
+// filepath: /c:/Users/night/project/react/react-app/.eslintrc.json
+{
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}

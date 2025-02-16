@@ -1,12 +1,7 @@
-import React from 'react';
-import { Layout, Menu, Breadcrumb, theme } from 'antd';
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
-const { Header, Content, Sider } = Layout;
+import React from 'react';
+const { Header, Content } = Layout;
 
 const items = new Array(15).fill(null).map((_, index) => ({
   key: index + 1,
@@ -18,7 +13,7 @@ function Home() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className="demo-logo"></div>
         <Menu

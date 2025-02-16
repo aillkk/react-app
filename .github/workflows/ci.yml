@@ -26,3 +26,14 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Deploy to Tencent Cloud
+        env:
+          HOST: ${{ secrets.TENCENT_CLOUD_HOST }}
+          USERNAME: ${{ secrets.TENCENT_CLOUD_USERNAME }}
+          SSH_KEY: ${{ secrets.TENCENT_CLOUD_SSH_KEY }}
+        run: |
+          echo "$SSH_KEY" > ssh_key
+          chmod 600 ssh_key
+          rsync -avz -e "ssh -i ssh_key -o StrictHostKeyChecking=no" build/ $USERNAME@$HOST:/path/to/your/deployment/directory
+          ssh -i ssh_key -o StrictHostKeyChecking=no $USERNAME@$HOST 'sudo systemctl restart nginx'

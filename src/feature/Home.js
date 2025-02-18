@@ -1,6 +1,9 @@
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
-import React from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import './Home.css';
+import PostCard from './PostCard';
 const { Header, Content } = Layout;
 
 const items = new Array(15).fill(null).map((_, index) => ({
@@ -8,7 +11,19 @@ const items = new Array(15).fill(null).map((_, index) => ({
   label: `nav ${index + 1}`,
 }));
 
+const handlePostBtnClick = (msg) => {
+  console.log(msg);
+};
+
 function Home() {
+  const [articlData, setArticleData] = useState('hello world');
+  useEffect(() => {
+    axios
+      .get('https://baidu.com')
+      .then((res) => setArticleData(res.data))
+      .catch((error) => console.error('error data'));
+  }, []);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -42,7 +57,15 @@ function Home() {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <Button
+            type="primary"
+            className="post-btn"
+            onClick={() => handlePostBtnClick('test')}
+          >
+            发一篇
+          </Button>
+          {articlData && <div>Article Data: {JSON.stringify(articlData)}</div>}
+          <PostCard></PostCard>
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>

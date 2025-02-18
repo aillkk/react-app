@@ -1,5 +1,12 @@
 // filepath: /c:/Users/night/project/react/react-app/.eslintrc.json
 {
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["node_modules", "src"]
+      }
+    }
+  },
   "extends": [
     "react-app",
     "plugin:prettier/recommended",

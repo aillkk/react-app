@@ -30,7 +30,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker login  ccr.ccs.tencentyun.com --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }}
+          docker login  ccr.ccs.tencentyun.com --username=${{ secrets.DOCKER_USERNAME }} --password-stdin=${{ secrets.DOCKER_PASSWORD }}
           docker build -t react-app:latest .
           docker tag react-app ccr.ccs.tencentyun.com/app/react-app:latest
           docker push ccr.ccs.tencentyun.com/app/react-app:latest
